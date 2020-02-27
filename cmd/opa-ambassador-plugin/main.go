@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/open-policy-agent/opa-istio-plugin/internal"
+	"github.com/irvinlim/opa-ambassador-plugin/internal"
 	"github.com/open-policy-agent/opa/cmd"
 	"github.com/open-policy-agent/opa/plugins"
 	"github.com/open-policy-agent/opa/runtime"

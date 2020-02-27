@@ -1,4 +1,4 @@
-module github.com/open-policy-agent/opa-istio-plugin
+module github.com/irvinlim/opa-ambassador-plugin
 
 go 1.12
 
