@@ -1,15 +1,10 @@
-# Copyright 2018 The OPA Authors. All rights reserved.
-# Use of this source code is governed by an Apache2
-# license that can be found in the LICENSE file.
+FROM golang:1.12 as build
+
+WORKDIR /go/src/github.com/open-policy-agent/opa-istio-plugin
+
+ADD . .
+RUN go build -o /go/bin/app ./cmd/opa-istio-plugin/...
 
 FROM gcr.io/distroless/base
-
-MAINTAINER Ashutosh Narkar  <anarkar4387@gmail.com>
-
-WORKDIR /app
-
-COPY opa_istio_linux_GOARCH /app
-
-ENTRYPOINT ["./opa_istio_linux_GOARCH"]
-
-CMD ["run"]
+COPY --from=build /go/bin/app /
+ENTRYPOINT ["/app"]
