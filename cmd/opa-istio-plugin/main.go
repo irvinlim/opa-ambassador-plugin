@@ -29,8 +29,8 @@ func (Factory) Validate(m *plugins.Manager, config []byte) (interface{}, error) 
 
 func main() {
 
-	runtime.RegisterPlugin("envoy.ext_authz.grpc", Factory{}) // for backwards compatibility
-	runtime.RegisterPlugin("envoy_ext_authz_grpc", Factory{})
+	runtime.RegisterPlugin("ambassador.ext_authz.grpc", Factory{}) // for backwards compatibility
+	runtime.RegisterPlugin("ambassador_ext_authz_grpc", Factory{})
 
 	if err := cmd.RootCommand.Execute(); err != nil {
 		fmt.Println(err)

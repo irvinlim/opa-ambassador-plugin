@@ -8,7 +8,7 @@ import (
 	"context"
 	"testing"
 
-	ext_authz "github.com/envoyproxy/go-control-plane/envoy/service/auth/v2"
+	ext_authz "github.com/datawire/ambassador/pkg/api/envoy/service/auth/v2"
 	"github.com/open-policy-agent/opa/util"
 	"google.golang.org/genproto/googleapis/rpc/code"
 )

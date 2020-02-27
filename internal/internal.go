@@ -19,9 +19,10 @@ import (
 
 	ctx "golang.org/x/net/context"
 
-	ext_core "github.com/envoyproxy/go-control-plane/envoy/api/v2/core"
-	ext_authz "github.com/envoyproxy/go-control-plane/envoy/service/auth/v2"
-	ext_type "github.com/envoyproxy/go-control-plane/envoy/type"
+	ext_core "github.com/datawire/ambassador/pkg/api/envoy/api/v2/core"
+	ext_authz "github.com/datawire/ambassador/pkg/api/envoy/service/auth/v2"
+	pb_legacy "github.com/datawire/ambassador/pkg/api/envoy/service/auth/v2alpha"
+	ext_type "github.com/datawire/ambassador/pkg/api/envoy/type"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/metrics"
 	"github.com/open-policy-agent/opa/plugins"
@@ -33,9 +34,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/genproto/googleapis/rpc/code"
-	rpc_status "google.golang.org/genproto/googleapis/rpc/status"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	rpc_status "istio.io/gogo-genproto/googleapis/google/rpc"
 )
 
 const defaultAddr = ":9191"
@@ -105,8 +106,9 @@ func New(m *plugins.Manager, cfg *Config) plugins.Plugin {
 		preparedQueryDoOnce: new(sync.Once),
 	}
 
-	// Register Authorization Server
+	// Register Authorization Server for Ambassador services
 	ext_authz.RegisterAuthorizationServer(plugin.server, plugin)
+	pb_legacy.RegisterAuthorizationServer(plugin.server, plugin)
 
 	m.RegisterCompilerTrigger(plugin.compilerUpdated)
 

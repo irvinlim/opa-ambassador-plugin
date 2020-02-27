@@ -13,8 +13,8 @@ import (
 	"sync"
 	"testing"
 
-	ext_core "github.com/envoyproxy/go-control-plane/envoy/api/v2/core"
-	ext_authz "github.com/envoyproxy/go-control-plane/envoy/service/auth/v2"
+	ext_core "github.com/datawire/ambassador/pkg/api/envoy/api/v2/core"
+	ext_authz "github.com/datawire/ambassador/pkg/api/envoy/service/auth/v2"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/plugins"
 	"github.com/open-policy-agent/opa/plugins/logs"
